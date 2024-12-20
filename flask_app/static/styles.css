@@ -1,0 +1,60 @@
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #343a40;
+}
+
+.navbar-brand, .nav-link {
+    color: white !important;
+}
+
+.navbar-nav .nav-item:hover {
+    background-color: #495057;
+}
+
+/* Content styling */
+.container {
+    margin-top: 80px;  /* To make space for the fixed navbar */
+}
+
+/* Footer styling */
+.footer {
+    background-color: #343a40;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Custom graph styling */
+img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Specific section styles for charts */
+h1 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.card {
+    margin-bottom: 2rem;
+}
+
+button.btn-primary {
+    font-size: 1.25rem;
+    padding: 0.75rem 1.5rem;
+}

@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ patient_name }}'s Data - Health Monitoring{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-5">{{ patient_name }}'s Sensor Data</h2>
+
+    <!-- Ultrasound Data Graph -->
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="text-center mb-0">Ultrasound Sensor Data</h3>
+                </div>
+                <div class="card-body text-center">
+                    {% if ultrasound_plot %}
+                        <img src="data:image/png;base64,{{ ultrasound_plot }}" class="img-fluid" alt="Ultrasound Graph" style="max-width: 100%; height: auto;">
+                    {% else %}
+                        <p>No ultrasound data available for the selected period.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LDR Data Graph and Count -->
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header bg-secondary text-white">
+                    <h3 class="text-center mb-0">LDR Sensor Data</h3>
+                </div>
+                <div class="card-body text-center">
+                    {% if ldr_plot %}
+                        <img src="data:image/png;base64,{{ ldr_plot }}" class="img-fluid" alt="LDR Graph" style="max-width: 100%; height: auto;">
+                    {% else %}
+                        <p>No LDR data available for the selected period.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 mt-3 text-center">
+            <h4>Total Times Opened Today: <span class="badge bg-info text-dark">{{ ldr_open_count }}</span></h4>
+        </div>
+    </div>
+
+    <!-- Box Status Table -->
+<div class="row mt-5">
+    <div class="col-md-12">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h3 class="text-center mb-0">Box Status</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-hover text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if empty_box_status %}
+                            {% for row in empty_box_status %}
+                            <tr>
+                                <td>{{ row[1] }}</td> <!-- Timestamp -->
+                                <td>{{ row[2] }}</td> <!-- Status (empty/full) -->
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr><td colspan="2">No box status data available.</td></tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Battery Data Table -->
+<div class="row mt-5">
+    <div class="col-md-12">
+        <div class="card shadow">
+            <div class="card-header bg-warning text-white">
+                <h3 class="text-center mb-0">Battery Data (Last 24 Hours)</h3>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-hover text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Voltage (V)</th>
+                            <th>Battery Percentage (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if battery_data %}
+                            {% for row in battery_data %}
+                            <tr>
+                                <td>{{ row[1] }}</td> <!-- Timestamp -->
+                                <td>{{ row[2] }}</td> <!-- Voltage -->
+                                <td>{{ row[3] }}%</td> <!-- Battery Percentage -->
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr><td colspan="3">No battery data available.</td></tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
