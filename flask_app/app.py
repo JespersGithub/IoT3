@@ -50,8 +50,8 @@ def connect_db():
     """Connect to the database."""
     return mysql.connector.connect(
         host="localhost",
-        user="azureuser",
-        password="Password1234",
+        user="xxx",
+        password="xxx",
         database="sensor_data"
     )
 
@@ -153,7 +153,7 @@ def login():
         password = request.form['password']
         
         # Dummy login validation (replace with your real logic)
-        if username == 'admin' and password == 'admin123':
+        if username == 'xxx' and password == 'xxx':
             session['username'] = username  # Store the username in session
             return redirect(url_for('home'))  # Redirect to home page after successful login
         else:
